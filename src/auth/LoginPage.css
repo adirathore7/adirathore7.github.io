@@ -1,0 +1,32 @@
+
+.login-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.login-hint {
+    padding-top: 0.5rem;
+    font-size: 14px;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2563eb;
+}
+
+.password-toggle:focus {
+    outline: none;
+    outline-offset: 2px;
+}

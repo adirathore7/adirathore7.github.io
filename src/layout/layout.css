@@ -1,0 +1,94 @@
+/* ---------- Layout shell ---------- */
+.app-shell {
+  display: flex;
+  height: 100vh;
+  background-color: #f4f6f8;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  width: 240px;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 16px;
+}
+
+.sidebar h1 {
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  gap: 20px;
+
+  a {
+    text-decoration: none;
+  }
+
+  .nav-icons {
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+}
+
+.nav-item {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: #1f2937;
+  text-decoration: none;
+  margin-bottom: 6px;
+}
+
+.nav-item:hover {
+  background-color: #f3f4f6;
+}
+
+.nav-item.active {
+  background-color: #e6f4ea;
+  color: #065f46;
+  font-weight: 500;
+}
+
+/* ---------- Main area ---------- */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Header ---------- */
+.header {
+  height: 56px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: #065f46;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ---------- Page content ---------- */
+.page-content {
+  padding: 24px;
+  overflow-y: auto;
+}

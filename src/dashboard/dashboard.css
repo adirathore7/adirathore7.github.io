@@ -1,0 +1,91 @@
+
+/* ---------- Dashboard layout ---------- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.dashboard-header {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.card-header {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ---------- Account summary ---------- */
+.account-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.account-row:last-child {
+  border-bottom: none;
+}
+
+.account-name {
+  font-weight: 500;
+}
+
+.account-balance {
+  font-weight: 600;
+}
+
+/* ---------- Money movement ---------- */
+.action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-btn {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  text-align: left;
+  cursor: pointer;
+}
+
+.action-btn:hover {
+  background-color: #ecfdf5;
+  border-color: #16a34a;
+}
+
+/* ---------- Activity log ---------- */
+.activity-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 14px;
+  display: grid;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-time {
+  color: #6b7280;
+  font-size: 12px;
+}
