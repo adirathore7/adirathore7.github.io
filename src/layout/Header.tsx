@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 import "./layout.css";
+import ThemeToggle from "./ThemeToggle";
 
 /*
   displays user context and global actions
@@ -18,6 +19,7 @@ export default function Header() {
   return (
     <header className="header">
       <div /> {/* Placeholder for potential left-aligned content */}
+      {/* <ThemeToggle /> */}
 
       <div className="header-user">
         <span>{user?.name}</span>

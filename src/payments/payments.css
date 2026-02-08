@@ -1,0 +1,18 @@
+
+.payments-container {
+    margin-left: 10px;
+}
+
+.form-section {
+    max-width: 420px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    gap: 10px;
+}
+
+.amount-container {
+    gap: 10px;
+    display: flex;
+}

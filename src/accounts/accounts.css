@@ -1,0 +1,29 @@
+
+.account-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.account-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.account-name {
+  font-weight: 600;
+}
+
+.account-balance {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.trnx-table-container {
+  width: 80%;
+  margin: 16px;
+}
