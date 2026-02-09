@@ -1,0 +1,97 @@
+.activity-container {
+    margin: 0 20px;
+}
+
+.activity-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+        padding: 10px 12px;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    tr {
+        border-bottom: 1px solid #ddd;
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+
+
+    .pagination-buttons {
+        gap: 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .pagination-buttons select {
+        padding: 6px 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    
+    .pagination-buttons button {
+        cursor: pointer;
+        background-color: #ffffff;
+        border: none;
+        padding: 0;
+    }
+    
+    .pagination-icons {
+        width: 32px;
+        height: 32px;
+        background: none;;
+    }
+    
+    .pagination-buttons button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-bottom: 16px;
+}
+
+.filters label {
+    font-weight: 600;
+    color: #333;
+}
+
+.filters select,
+.filters input[type="date"] {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    font-size: 14px;
+}
+
+.filters select:focus,
+.filters input[type="date"]:focus {
+    outline: none;
+    border-color: #0078d4;
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2);
+}
+
+.filters select {
+    min-width: 120px;
+}
+
+.filters input[type="date"] {
+    min-width: 140px;
+}
+

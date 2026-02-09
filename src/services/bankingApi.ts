@@ -35,10 +35,9 @@ export async function fetchAccount(): Promise<Account[]> {
   ];
 }
 
-export async function fetchTransactions(
-  accountId: string,
-): Promise<Transaction[]> {
+export async function fetchTransactions(accountId?: string): Promise<Transaction[]> {
   await new Promise((resolve) => setTimeout(resolve, 1000));
+  console.log(accountId);
 
   return [
     {

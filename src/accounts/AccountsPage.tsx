@@ -24,13 +24,17 @@ export default function AccountsPage() {
 
     return (
         <Suspense fallback={<LoadingSpinner />}>
-            <h2 className="gradient-text">Accounts</h2>
+            <section className="accounts-container">
+                <header>
+                    <h1 className="gradient-text">Accounts</h1>
+                </header>
 
-            <div className="account-grid">
-                {accounts.map((acc) => (
-                    <AccountCard key={acc.id} account={acc} onSelect={(id) => navigate(`/accounts/${id}`)} />
-                ))}
-            </div>
+                <div className="account-grid">
+                    {accounts.map((acc) => (
+                        <AccountCard key={acc.id} account={acc} onSelect={(id) => navigate(`/accounts/${id}`)} />
+                    ))}
+                </div>
+            </section>
         </Suspense>
     );
 }

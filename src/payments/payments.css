@@ -1,18 +1,28 @@
 
 .payments-container {
-    margin-left: 10px;
+    margin: 0 20px;
 }
 
 .form-section {
-    max-width: 420px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 35px;
+    max-width: 1000px;
     background: #ffffff;
     padding: 20px;
     border-radius: 8px;
     border: 1px solid #e5e7eb;
-    gap: 10px;
+
+    .button-primary {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: 50%;
+    }
 }
 
 .amount-container {
     gap: 10px;
     display: flex;
+    flex-direction: column;
 }

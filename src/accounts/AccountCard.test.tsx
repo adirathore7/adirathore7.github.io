@@ -1,5 +1,6 @@
 import AccountCard from "./AccountCard";
 import {fireEvent, render, screen} from "@testing-library/react";
+import { vi } from "vitest";
 
 const mockAccount = {
     id: '1',

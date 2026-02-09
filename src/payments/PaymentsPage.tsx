@@ -7,7 +7,9 @@ import './payments.css';
 export default function PaymentsPage() {
     return (
         <section className="payments-container">
-            <h2 className="gradient-text">Payments</h2>
+            <header>
+                <h1 className="gradient-text">Payments</h1>
+            </header>
 
             <TransferForm />
         </section>

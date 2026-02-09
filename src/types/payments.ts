@@ -2,9 +2,10 @@ export type PaymentType = "ACH" | "WIRE" | "INTERNAL";
 
 export interface PaymentRequest {
   fromAccountId: string;
+  recipient: string;
   paymentType: PaymentType;
   amount: number;
-  memo?: string;
+  memo: string;
   paymentDate: string;
-  referenceId?: string;
+  referenceId: string;
 }

@@ -1,11 +1,9 @@
 import "./layout.css";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <div>
-      
-    </div>
-  )
+    <footer className="app-footer">
+      Built by Aadish Rathore - Mock Banking Portal | &copy; 2026 All rights reserved.
+    </footer>
+  );
 }
-
-export default Footer

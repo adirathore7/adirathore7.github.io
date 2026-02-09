@@ -1,5 +1,9 @@
 
 /* ---------- Dashboard layout ---------- */
+.dashboard-container {
+    margin: 0 20px;
+}
+
 .dashboard-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;

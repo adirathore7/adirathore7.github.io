@@ -15,19 +15,21 @@ import "./layout.css";
 
  export default function AppLayout() {
     return (
-        <div className="app-shell">
-            <Sidebar />
+        <>
+            <div className="app-shell">
+                <Sidebar />
 
-            <div className="main-content">
-                <Header />
+                <div className="main-content">
+                    <Header />
 
-                <main className="page-container">
-                        {/* Main content will be rendered here */}
-                        <Outlet />
-                </main>
+                    <main className="page-container">
+                            {/* Main content will be rendered here */}
+                            <Outlet />
+                    </main>
+                </div>
+
             </div>
-
             <Footer />
-        </div>
+        </>
     );
  }

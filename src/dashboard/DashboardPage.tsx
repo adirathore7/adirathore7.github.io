@@ -1,5 +1,5 @@
 import AccountSummary from "./AccountSummary";
-import ActivityLog from "./ActivityLog";
+import RecentActivityLog from "./RecentActivityLog";
 import MoneyMovement from "./MoneyMovement";
 import "./dashboard.css";
 
@@ -8,8 +8,10 @@ import "./dashboard.css";
 */
 export default function DashboardPage() {
     return (
-        <article>
-            <header className="gradient-text dashboard-header">Dashboard</header>
+        <article className="dashboard-container">
+            <header>
+                <h1 className="gradient-text">Dashboard</h1>
+            </header>
 
             <section className="dashboard-grid">
                 {/* Left col */}
@@ -19,7 +21,7 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Right col */}
-                <ActivityLog />
+                <RecentActivityLog />
             </section>
         </article>
     );

@@ -3,7 +3,7 @@ import "./dashboard.css";
 /*
   This component displays recent user and system actions.
 */
-export default function ActivityLog() {
+export default function RecentActivityLog() {
     const logs = [
         { time: '2024-06-01 10:15:30', action: 'Logged in from IP 192.168.1.100' },
         { time: '2024-06-01 09:45:15', action: 'Transferred $5,000 to Checking Account' },

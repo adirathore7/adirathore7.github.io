@@ -1,3 +1,6 @@
+.accounts-container {
+    margin: 0 20px;
+}
 
 .account-grid {
     display: grid;

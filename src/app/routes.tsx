@@ -6,6 +6,7 @@ import DashboardPage from "../dashboard/DashboardPage";
 import AccountsPage from "../accounts/AccountsPage";
 import TransactionsPage from "../accounts/TransactionsPage";
 import PaymentsPage from "../payments/PaymentsPage";
+import ActivityPage from "../activity/ActivityPage";
 
 /*
  App routes. AuthGuard ensures protected access.
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
             {path: "accounts", element: <AccountsPage />},
             {path: "accounts/:accountId", element: <TransactionsPage />},
             {path: "payments", element: <PaymentsPage />},
+            {path: "activity-log", element: <ActivityPage />}
         ],
     },
 ]);

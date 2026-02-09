@@ -106,3 +106,14 @@ nav {
   border: 1px solid #e5e7eb;
   cursor: pointer;
 }
+
+/* ---------- Footer ---------- */
+.app-footer {
+  text-align: center;
+  padding: 16px 0;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  font-size: 12px;
+  color: #6b7280;
+  opacity: 0.7;
+}
