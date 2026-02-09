@@ -1,7 +1,7 @@
 /* ---------- Layout shell ---------- */
 .app-shell {
   display: flex;
-  height: 100vh;
+  min-height: 100dvh;  /* dynamic viewport height */
   background-color: #f4f6f8;
 }
 
@@ -91,6 +91,11 @@ nav {
   color: #065f46;
   cursor: pointer;
   font-size: 14px;
+}
+
+.page-container {
+  flex: 1;
+  overflow-y: auto;
 }
 
 /* ---------- Page content ---------- */

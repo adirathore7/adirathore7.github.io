@@ -39,6 +39,14 @@ export default function LoginPage() {
         }
     };
 
+    function fillTestCredentials() {
+        setHint((hint) => !hint);
+        if (!hint) {
+            setEmail("test@email.com");
+            setPassword("test123");
+        }
+    }
+
     return (
         <div className="full-height login-container">
             <form onSubmit={handleSubmit} className="form-card" aria-label="Login form">
@@ -75,8 +83,8 @@ export default function LoginPage() {
                 </button>
                 
                 <div className="login-hint">
-                    <a href="#" onClick={() => setHint(!hint)} className="hint-toggle">
-                        {hint ? "Hide Hint" : "Show Hint"}
+                    <a href="#" onClick={fillTestCredentials} className="hint-toggle">
+                        {hint ? "Hide Hint" : "Click for Login (demo)"}
                     </a>
                     {hint && <p>Use <code>test@email.com</code> and <code>test123</code> to log in.</p>}
                 </div>

@@ -26,10 +26,10 @@ import "./layout.css";
                             {/* Main content will be rendered here */}
                             <Outlet />
                     </main>
+                    
+                    <Footer />
                 </div>
-
             </div>
-            <Footer />
         </>
     );
  }
