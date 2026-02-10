@@ -12,7 +12,7 @@ export interface PaymentRequest {
   fromAccountId: string;
   recipient: string;
   paymentType: PaymentType;
-  amount: number;
+  amount: string;
   memo: string;
   paymentDate: string;
   referenceId: string;

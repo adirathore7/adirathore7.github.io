@@ -14,6 +14,7 @@ import DescIcon from './desc.png';
 import BackIcon from './back.png';
 import SpinnerIcon from './spinner.png';
 import ExportIcon from './export.png';
+import AvatarIcon from './avatar.png';
 
 export const iconsMap = {
   menu: MenuIcon,
@@ -32,4 +33,5 @@ export const iconsMap = {
   back: BackIcon,
   spinner: SpinnerIcon,
   export: ExportIcon,
+  avatar: AvatarIcon,
 };

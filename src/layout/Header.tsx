@@ -27,7 +27,11 @@ export default function Header({onMenuClick}: {onMenuClick: () => void}) {
       </button>
 
       <div className="header-user">
-        <span>{user?.name}</span>
+        <img src={iconsMap.avatar} alt="User Avatar" className="avatar" />
+        <p className="user-info">
+          {user?.name}
+          <span>{user?.email}</span>
+        </p>
         <button onClick={handleLogout} className="logout-btn">Logout</button>
       </div>
     </header>

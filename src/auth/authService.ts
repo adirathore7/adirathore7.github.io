@@ -8,7 +8,7 @@ export async function login(email: string, password: string) {
   await new Promise((resolve) => setTimeout(resolve, 1000));
     // Return a mock user object
     if (email === "test@email.com" && password === "test123") {
-        return { name: "John Doe" };
+        return { name: "Test User", email: "test@email.com" };
     }
     // Simulate login failure
     throw new Error("Invalid email or password");

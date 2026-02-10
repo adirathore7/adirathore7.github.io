@@ -5,6 +5,7 @@ import { create } from "zustand";
 */
 interface User {
     name: string;
+    email: string;
     // Add other user properties as needed
 }
 

@@ -78,7 +78,7 @@ export default function LoginPage() {
                         </button>
                     </div>
                 </div>
-                <button type="submit" disabled={loading} className="button-primary">
+                <button type="submit" disabled={loading} className="button-primary" style={{width: '100%'}}>
                     {loading ? "Logging in..." : "Login"}
                 </button>
                 

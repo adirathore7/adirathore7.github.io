@@ -1,6 +1,9 @@
 import { useReducer, useState } from "react";
-import './payments.css';
 import { initialPaymentState, paymentReducer } from "./paymentReducer";
+import { PaymentTypes } from "../types/payments";
+import { mockAccounts } from "../mockData/mockAccounts";
+import './payments.css';
+import { formatAmount } from "../utils/amountFormat";
 
 /**
  * Transfer form for moving money between accounts.
@@ -10,11 +13,35 @@ export default function TransferForm() {
   const [success, setSuccess] = useState(false);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+    const { name, value } = e.target;
+
     dispatch({
       type: "SET_FIELD",
-      field: e.target.name as keyof typeof initialPaymentState,
-      value: e.target.value,
+      field: name as keyof typeof initialPaymentState,
+      value: value,
     });
+  }
+
+  function handleAmountBlur() {
+    if (form.amount) {
+      const formatted = formatAmount(Number(form.amount));
+      dispatch({
+        type: "SET_FIELD",
+        field: "amount" as keyof typeof initialPaymentState,
+        value: formatted,
+      });
+    }
+  }
+
+  function handleAmountFocus() {
+    if (form.amount) {
+      const raw = String(form.amount).replace(/[^0-9.]/g, "");
+      dispatch({
+        type: "SET_FIELD",
+        field: "amount" as keyof typeof initialPaymentState,
+        value: raw,
+      });
+    }
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -22,82 +49,115 @@ export default function TransferForm() {
 
     const payload = {
       ...form,
-      amount: Number(form.amount),
     };
     dispatch({ type: "LOAD_DRAFT", payload });
+    clearForm();
     setSuccess(true);
+
+    setTimeout(() => {
+      setSuccess(false);
+    }, 5000);
+  }
+
+  function clearForm() {
+    dispatch({ type: "RESET_FORM" });
+    setSuccess(false);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="form-section">
-      <div className="amount-container">
+    <form onSubmit={handleSubmit} onReset={clearForm} className="form-section">
+      <div className="form-group">
         <label htmlFor="fromAccount">From Account</label>
-        <select id="fromAccount" style={{width: '100%'}}
-          name="fromAccount"
+        <select id="fromAccountId"
+          name="fromAccountId"
           required
           value={form.fromAccountId}
           onChange={handleChange}
-        />
+        >
+          <option value="">Select an account</option>
+          {mockAccounts.map((acc) => (
+            <option key={acc.id} value={acc.id}>{`${acc.id} - ${acc.name}`}</option>
+          ))}
+        </select>
       </div>
-      <div className="amount-container">
+      <div className="form-group">
         <label htmlFor="recipient">Recipient</label>
-        <input id="recipient" style={{width: '100%'}}
+        <input id="recipient"
           name="recipient"
           type="text"
           required
           value={form.recipient}
           onChange={handleChange}
+          placeholder="Enter recipient's name"
         />
       </div>
-      <div className="amount-container">
+      <div className="form-group">
         <label htmlFor="paymentType">Payment Type</label>
-        <select id="paymentType" style={{width: '100%'}}
+        <select id="paymentType"
           name="paymentType"
           required
           value={form.paymentType}
           onChange={handleChange}
-        />
+        >
+          <option value="">Select a payment type</option>
+          {PaymentTypes && Object.values(PaymentTypes).map((type) => (
+            <option key={type} value={type}>{type}</option>
+          ))}
+        </select>
       </div>
-      <div className="amount-container">
+      <div className="form-group">
         <label htmlFor="amount">Amount</label>
-        <input id="amount" style={{width: '100%'}}
-          type="number"
+        <input id="amount"
+          name="amount"
+          type="text"
           required
           value={form.amount}
           onChange={handleChange}
+          onBlur={handleAmountBlur}
+          onFocus={handleAmountFocus}
+          placeholder="Enter $ value"
         />
       </div>
-      <div className="amount-container">
+      <div className="form-group">
         <label htmlFor="memo">Memo</label>
-        <input id="memo" style={{width: '100%'}}
+        <input id="memo"
+          name="memo"
           type="text"
-          required
           value={form.memo}
           onChange={handleChange}
+          placeholder="Optional: Add a brief note"
         />
       </div>
-      <div className="amount-container">
+      <div className="form-group">
         <label htmlFor="paymentDate">Payment Date</label>
-        <input id="paymentDate" style={{width: '100%'}}
+        <input id="paymentDate"
+          name="paymentDate"
           type="date"
           required
           value={form.paymentDate}
           onChange={handleChange}
+          placeholder="Select a date"
         />
       </div>
-      <div className="amount-container">
+      <div className="form-group">
         <label htmlFor="referenceId">Reference ID</label>
-        <input id="referenceId" style={{width: '100%'}}
-          type="number"
+        <input id="referenceId"
+          name="referenceId"
+          type="text"
           disabled={true}
           value={form.referenceId}
-          onChange={handleChange}
         />
       </div>
 
-      <button className="button-primary" style={{ marginTop: 16 }}>
-        Submit Transfer
-      </button>
+      <div className="form-buttons">
+        <button className="button-primary" type="submit">
+          Submit Transfer
+        </button>
+
+        <button className="button-secondary" type="reset">
+          Clear Form
+        </button>
+      </div>
 
       {success && (
         <p style={{ marginTop: 12, color: "#065f46" }}>
