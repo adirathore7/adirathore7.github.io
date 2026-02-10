@@ -146,3 +146,15 @@ input[type="password"]::-webkit-textfield-decoration-container {
 .modal {
   width: 420px;
 }
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+

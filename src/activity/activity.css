@@ -15,6 +15,18 @@
     tr {
         border-bottom: 1px solid #ddd;
     }
+
+    tr:last-child {
+        border-bottom: none;
+    }
+
+    .sort-icon {
+        width: 16px;
+        height: 16px;
+        margin-left: 6px;
+        vertical-align: middle;
+        cursor: pointer;
+    }
 }
 
 .pagination {
@@ -95,3 +107,10 @@
     min-width: 140px;
 }
 
+.filters button {
+    padding: 6px 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+}

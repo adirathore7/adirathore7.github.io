@@ -4,6 +4,7 @@
 */
 
 import type { Account } from "../types/banking";
+import { formatAmount } from "../utils/amountFormat";
 
 interface Props {
     account: Account,
@@ -22,7 +23,7 @@ export default function AccountCard({account, onSelect}: Props) {
     return (
         <div className="account-card" onClick={() => onSelect(account.id)} onKeyDown={handleKeyDown} role="button" tabIndex={0}>
             <div className="account-name">{account.name}</div>
-            <div className="account-balance">{account.balance.toLocaleString()} {account.currency}</div>
+            <div className="account-balance">{formatAmount(account.balance)} {account.currency}</div>
         </div>
     );
 }

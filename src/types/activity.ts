@@ -8,3 +8,9 @@ export interface ActivityLog {
     status: "SUCCESS" | "FAILED" | "PENDING";
     details: string;
 }
+
+export interface RecentActivity {
+    id: string;
+    time: string;
+    action: string;
+}

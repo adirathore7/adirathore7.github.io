@@ -1,24 +1,48 @@
+import { useEffect, useState } from "react";
+import { fetchAccountSummary } from "../services/bankingApi";
+import type { Account } from "../types/banking";
+import LoadingSpinner from "../components/LoadingSpinner";
+import { formatAmount } from "../utils/amountFormat";
 
 /*
   This component shows high-level balance across accounts.
 */
 export default function AccountSummary() {
-    const accounts = [
-        { name: 'Checking Account', balance: '$223,500.75' },
-        { name: 'Savings Account', balance: '$82,300.00'},
-        { name: 'USD Account', balance: '$15,000.50 USD' }
-    ];
+    const [accounts, setAccounts] = useState<Account[]>([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const loadData = async() => {
+            setLoading(true);
+            try {
+                const data = await fetchAccountSummary();
+                setAccounts(data);
+            } catch (error) {
+                console.error("Error fetching account summary:", error);
+                throw error;
+            } finally {
+                setLoading(false);
+            }
+        }
+        loadData();
+    }, []);
 
     return (
         <article className="card">
-            <header className="card-header">Account Summary</header>
+            <header>
+                <h3 style={{marginTop: 0}}>Account Summary</h3>
+            </header>
 
-            {accounts.map((account) => (
-                <section key={account.name} className="account-row">
-                    <p className="account-name">{account.name}</p>
-                    <p className="account-balance">{account.balance}</p>
-                </section>
-            ))}
+            {!loading
+                ? (
+                    accounts.map((account) => (
+                        <section key={account.name} className="account-row">
+                            <p className="account-summary-name">{account.name}</p>
+                            <p className="account-summary-balance">{formatAmount(account.balance)} {account.currency}</p>
+                        </section>
+                    ))
+                )
+                : (<LoadingSpinner />)}
         </article>
     );
 }

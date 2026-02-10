@@ -27,6 +27,70 @@
 }
 
 .trnx-table-container {
-  width: 80%;
   margin: 16px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-btn, .export-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.export-btn {
+  display: grid;
+  justify-items: center;
+}
+
+.back-icon, .export-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+        padding: 10px 12px;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    tr {
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:last-child {
+        border-bottom: none;
+    }
+}
+
+.view-more-container {
+  text-align: center;
+  padding-top: 1rem;
+
+  .view-more-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+
+    span {
+      font-weight: 600;
+      font-size: small;
+    }
+  }
+
+  .view-more-button:hover {
+    background: #f5f5f5;
+  }
 }

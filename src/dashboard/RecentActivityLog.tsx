@@ -1,27 +1,51 @@
+import { useEffect, useState } from "react";
+import { formatDateTime } from "../utils/dateTimeFormat";
+import type { RecentActivity } from "../types/activity";
+import { fetchRecentActivity } from "../services/recentActivity.service";
+import LoadingSpinner from "../components/LoadingSpinner";
 import "./dashboard.css";
 
 /*
   This component displays recent user and system actions.
 */
 export default function RecentActivityLog() {
-    const logs = [
-        { time: '2024-06-01 10:15:30', action: 'Logged in from IP 192.168.1.100' },
-        { time: '2024-06-01 09:45:15', action: 'Transferred $5,000 to Checking Account' },
-        { time: '2024-05-31 18:30:45', action: 'Updated profile information' }
-    ];
+    const [logs, setLogs] = useState<RecentActivity[]>([]);
+    const [loading, setLoading] = useState(false);
+    
+    useEffect(() => {
+        const loadData = async() => {
+            try {
+                setLoading(true);
+                const data = await fetchRecentActivity();
+                setLogs(data);
+            } catch (error) {
+                console.error("Error fetching recent activity:", error);
+                throw error;
+            } finally {
+                setLoading(false);
+            }
+        }
+        loadData();
+    }, []);
 
     return (
         <article className="card">
-            <header className="card-header">Recent Activity</header>
-
-            <section className="log-list">
-                {logs.map((log, index) => (
-                    <div key={index} className="activity-item">
-                        <span className="log-action">{log.action}</span>
-                        <span className="activity-time">{log.time}</span>
-                    </div>
-                ))}
-            </section>
+            <header>
+                <h3 style={{marginTop: 0}}>Recent Activity</h3>
+            </header>
+            {!loading
+                ? (
+                    <section className="recent-activity-list">
+                        {logs.map((log, index) => (
+                            <div key={index} className="recent-activity-item">
+                                <span className="recent-activity-action">{log.action}</span>
+                                <span className="recent-activity-time">{formatDateTime(log.time)}</span>
+                            </div>
+                        ))}
+                    </section>
+                )
+                : (<LoadingSpinner /> )
+            }
         </article>
     );
 }

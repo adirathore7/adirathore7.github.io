@@ -6,8 +6,6 @@ import { initialPaymentState, paymentReducer } from "./paymentReducer";
  * Transfer form for moving money between accounts.
  */
 export default function TransferForm() {
-  // const [amount, setAmount] = useState("");
-  // const [name, setName] = useState("");
   const [form, dispatch] = useReducer(paymentReducer, initialPaymentState);
   const [success, setSuccess] = useState(false);
 

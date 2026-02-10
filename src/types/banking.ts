@@ -9,5 +9,6 @@ export interface Transaction {
   id: string;
   date: string;
   description: string;
+  paymentType: string;
   amount: number;
 }

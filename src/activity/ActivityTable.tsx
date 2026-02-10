@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import type { ActivityLog } from "../types/activity";
-import { fetchActivityLogs } from "./activity.service";
+import { fetchActivityLogs } from "../services/activity.service";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { formatDate } from "../utils/dateFormat";
 import { formatActions } from "../utils/actions";
 import { formatStatus } from "../utils/status";
-import "./activity.css";
 import { iconsMap } from "../assets/iconsMap";
+import "./activity.css";
 
 export default function ActivityTable({ status, startDate, endDate, onRowClick }: {status: string, startDate: string, endDate: string, onRowClick: (record: ActivityLog) => void}) {
     const [rows, setRows] = useState<ActivityLog[]>([]);
@@ -53,17 +53,35 @@ export default function ActivityTable({ status, startDate, endDate, onRowClick }
         }
     }
 
+    function getSortIcon(field: keyof ActivityLog) {
+        if (sortField !== field) {
+            return iconsMap.desc;
+        }
+        return sortOrder === "asc" ? iconsMap.asc : iconsMap.desc;
+    }
+
+    if (rows.length === 0 && !loading) {
+        return <div className="no-data">No activity logs found.</div>;
+    }
     return (
         <>
             {!loading ? 
                 (<div>
-                    <table className="activity-table">
+                    <table className="activity-table" aria-label="Activity Table">
                         <thead>
                             <tr>
-                                <th onClick={() => handleSort("date")}>Date</th>
-                                <th onClick={() => handleSort("user")}>User</th>
-                                <th onClick={() => handleSort("action")}>Action</th>
-                                <th onClick={() => handleSort("status")}>Status</th>
+                                <th onClick={() => handleSort("date")}>
+                                    Date<img src={getSortIcon("date")} alt="Sort" className="sort-icon" />
+                                </th>
+                                <th onClick={() => handleSort("user")}>
+                                    User<img src={getSortIcon("user")} alt="Sort" className="sort-icon" />
+                                </th>
+                                <th onClick={() => handleSort("action")}>
+                                    Action<img src={getSortIcon("action")} alt="Sort" className="sort-icon" />
+                                </th>
+                                <th onClick={() => handleSort("status")}>
+                                    Status<img src={getSortIcon("status")} alt="Sort" className="sort-icon" />
+                                </th>
                             </tr>
                         </thead>
 

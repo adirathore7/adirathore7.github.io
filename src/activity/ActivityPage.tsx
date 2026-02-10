@@ -19,7 +19,7 @@ export default function ActivityPage() {
         <Suspense fallback={<LoadingSpinner />}>
             <article className="activity-container">
                 <header>
-                    <h2 className="gradient-text">Activity Log</h2>
+                    <h1 className="gradient-text">Activity Log</h1>
                 </header>
 
                 <div className="card">

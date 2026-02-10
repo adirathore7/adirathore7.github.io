@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { useState } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -14,22 +15,24 @@ import "./layout.css";
  */
 
  export default function AppLayout() {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     return (
-        <>
-            <div className="app-shell">
-                <Sidebar />
+        <div className="app-shell">
+            <Sidebar open={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-                <div className="main-content">
-                    <Header />
+            <div className="main-content">
+                <Header onMenuClick={() => setIsSidebarOpen(true)} />
 
-                    <main className="page-container">
-                            {/* Main content will be rendered here */}
-                            <Outlet />
-                    </main>
-                    
-                    <Footer />
-                </div>
+                <main className="page-container">
+                        {/* Main content will be rendered here */}
+                        <Outlet />
+                </main>
+                
+                <Footer />
             </div>
-        </>
+
+            {/* Overlay for mobile */}
+            {isSidebarOpen && <div className="overlay" onClick={() => setIsSidebarOpen(false)} />}
+        </div>
     );
  }

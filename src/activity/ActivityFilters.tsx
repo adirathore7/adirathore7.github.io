@@ -3,6 +3,12 @@ import './activity.css';
 export default function ActivityFilters({status, setStatus, startDate, endDate, setStartDate, setEndDate}: 
     {status: string, setStatus: (s: string) => void, startDate: string, endDate: string, setStartDate: (d: string) => void, setEndDate: (d: string) => void}) {
     
+    function clearFilters() {
+        setStatus("");
+        setStartDate("");
+        setEndDate("");
+    }
+    
     return (
         <div className="filters">
             <label htmlFor="filter">Filter:</label>
@@ -16,6 +22,10 @@ export default function ActivityFilters({status, setStatus, startDate, endDate, 
 
             <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} placeholder="Start Date" />
             <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} placeholder="End Date" />
+
+            <button onClick={clearFilters} >
+                Clear filters
+            </button>
         </div>
     );
 }

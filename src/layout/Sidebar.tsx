@@ -6,25 +6,25 @@ import {iconsMap} from "../assets/iconsMap";
  Sidebar navigation
 */
 
-export default function Sidebar() {
+export default function Sidebar({open, onClose}: {open: boolean, onClose: () => void}) {
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${open ? "open" : ""}`}>
       <h1 className="gradient-text">Mock Banking Portal</h1>
 
       <nav>
-        <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
+        <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`} onClick={onClose}>
           <img src={iconsMap.home} alt="Home" className="nav-icons" />Home
         </NavLink>
 
-        <NavLink to="/accounts" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
+        <NavLink to="/accounts" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`} onClick={onClose}>
           <img src={iconsMap.account} alt="Accounts" className="nav-icons" />Accounts
         </NavLink>
 
-        <NavLink to="/payments" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
+        <NavLink to="/payments" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`} onClick={onClose}>
           <img src={iconsMap.payment} alt="Payments" className="nav-icons" />Payments
         </NavLink>
 
-        <NavLink to="/activity-log" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
+        <NavLink to="/activity-log" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`} onClick={onClose}>
           <img src={iconsMap.log} alt="Activity Log" className="nav-icons" />Activity Log
         </NavLink>
       </nav>
