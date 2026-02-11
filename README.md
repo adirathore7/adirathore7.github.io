@@ -96,7 +96,7 @@ To redeploy:
 
 ## ⚠️ DisclaimerThis is not a real banking application.
 It does not store, process, or transmit real financial data.
-All content is for educational and demonstration purposes only.📄 LicenseThis project is open-source under the MIT License.
+All content is for educational and demonstration purposes only.
 Feel free to fork, modify, and build upon it.
 
 ---
