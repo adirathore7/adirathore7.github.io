@@ -10,5 +10,5 @@ export default function AuthGuard({ children }: { children: JSX.Element }) {
     const user = useAuthStore((state) => state.user);
     return user
         ? children
-        : <Navigate to="/login" replace />;
+        : <Navigate to="/" replace />;
 }

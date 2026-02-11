@@ -3,6 +3,7 @@ import { useAuthStore } from "../store/authStore";
 import { iconsMap } from "../assets/iconsMap";
 // import ThemeToggle from "./ThemeToggle";
 import "./layout.css";
+import ProfileMenu from "./ProfileMenu";
 
 /*
   displays user context and global actions
@@ -14,7 +15,7 @@ export default function Header({onMenuClick}: {onMenuClick: () => void}) {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -27,12 +28,11 @@ export default function Header({onMenuClick}: {onMenuClick: () => void}) {
       </button>
 
       <div className="header-user">
-        <img src={iconsMap.avatar} alt="User Avatar" className="avatar" />
+        <ProfileMenu onLogout={handleLogout} />
         <p className="user-info">
           {user?.name}
           <span>{user?.email}</span>
         </p>
-        <button onClick={handleLogout} className="logout-btn">Logout</button>
       </div>
     </header>
   );

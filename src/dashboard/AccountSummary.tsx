@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchAccountSummary } from "../services/bankingApi";
+import { fetchAccountSummary } from "../services/bankingApi.service";
 import type { Account } from "../types/banking";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { formatAmount } from "../utils/amountFormat";

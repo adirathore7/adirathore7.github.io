@@ -31,7 +31,7 @@ export default function LoginPage() {
         try {
             const user = await loginService(email, password);
             login(user);
-            navigate("/");
+            navigate("/secure/dashboard");
         } catch (err) {
             setError((err as Error).message);
         } finally {

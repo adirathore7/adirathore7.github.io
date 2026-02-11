@@ -29,7 +29,7 @@ export default function RecentActivityLog() {
     }, []);
 
     return (
-        <article className="card">
+        <article className="card" style={{height: 'fit-content'}}>
             <header>
                 <h3 style={{marginTop: 0}}>Recent Activity</h3>
             </header>

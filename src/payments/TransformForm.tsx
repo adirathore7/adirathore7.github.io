@@ -1,18 +1,20 @@
-import { useReducer, useState } from "react";
+import { useReducer, useState, type ChangeEvent } from "react";
 import { initialPaymentState, paymentReducer } from "./paymentReducer";
 import { PaymentTypes } from "../types/payments";
 import { mockAccounts } from "../mockData/mockAccounts";
-import './payments.css';
 import { formatAmount } from "../utils/amountFormat";
+import './payments.css';
+import { paymentValidation } from "../utils/validateFields";
 
 /**
  * Transfer form for moving money between accounts.
  */
 export default function TransferForm() {
   const [form, dispatch] = useReducer(paymentReducer, initialPaymentState);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [success, setSuccess] = useState(false);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+  function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value } = e.target;
 
     dispatch({
@@ -20,6 +22,7 @@ export default function TransferForm() {
       field: name as keyof typeof initialPaymentState,
       value: value,
     });
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   }
 
   function handleAmountBlur() {
@@ -47,10 +50,10 @@ export default function TransferForm() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    const payload = {
-      ...form,
-    };
-    dispatch({ type: "LOAD_DRAFT", payload });
+    const isValid = paymentValidation(form, setErrors);
+    if (!isValid) return;
+
+    dispatch({ type: "LOAD_DRAFT", payload: form });
     clearForm();
     setSuccess(true);
 
@@ -62,6 +65,7 @@ export default function TransferForm() {
   function clearForm() {
     dispatch({ type: "RESET_FORM" });
     setSuccess(false);
+    setErrors({});
   }
 
   return (
@@ -70,7 +74,6 @@ export default function TransferForm() {
         <label htmlFor="fromAccount">From Account</label>
         <select id="fromAccountId"
           name="fromAccountId"
-          required
           value={form.fromAccountId}
           onChange={handleChange}
         >
@@ -79,23 +82,23 @@ export default function TransferForm() {
             <option key={acc.id} value={acc.id}>{`${acc.id} - ${acc.name}`}</option>
           ))}
         </select>
+        {errors.fromAccountId && <p className="error">{errors.fromAccountId}</p>}
       </div>
       <div className="form-group">
         <label htmlFor="recipient">Recipient</label>
         <input id="recipient"
           name="recipient"
           type="text"
-          required
           value={form.recipient}
           onChange={handleChange}
           placeholder="Enter recipient's name"
         />
+        {errors.recipient && <p className="error">{errors.recipient}</p>}
       </div>
       <div className="form-group">
         <label htmlFor="paymentType">Payment Type</label>
         <select id="paymentType"
           name="paymentType"
-          required
           value={form.paymentType}
           onChange={handleChange}
         >
@@ -104,19 +107,20 @@ export default function TransferForm() {
             <option key={type} value={type}>{type}</option>
           ))}
         </select>
+        {errors.paymentType && <p className="error">{errors.paymentType}</p>}
       </div>
       <div className="form-group">
         <label htmlFor="amount">Amount</label>
         <input id="amount"
           name="amount"
           type="text"
-          required
           value={form.amount}
           onChange={handleChange}
           onBlur={handleAmountBlur}
           onFocus={handleAmountFocus}
           placeholder="Enter $ value"
         />
+        {errors.amount && <p className="error">{errors.amount}</p>}
       </div>
       <div className="form-group">
         <label htmlFor="memo">Memo</label>
@@ -133,11 +137,11 @@ export default function TransferForm() {
         <input id="paymentDate"
           name="paymentDate"
           type="date"
-          required
           value={form.paymentDate}
           onChange={handleChange}
           placeholder="Select a date"
         />
+        {errors.paymentDate && <p className="error">{errors.paymentDate}</p>}
       </div>
       <div className="form-group">
         <label htmlFor="referenceId">Reference ID</label>

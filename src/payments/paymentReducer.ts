@@ -8,7 +8,7 @@ export type PaymentAction =
 export const initialPaymentState: PaymentRequest = {
   fromAccountId: "",
   recipient: "",
-  paymentType: "ACH",
+  paymentType: "",
   amount: "",
   memo: "",
   paymentDate: "",
@@ -29,10 +29,10 @@ export function paymentReducer(state: PaymentRequest, action: PaymentAction): Pa
 }
 
 export function generateReferenceId() {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    for (let i = 0; i < 12; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  for (let i = 0; i < 12; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
+  return result;
+}

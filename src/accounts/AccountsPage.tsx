@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import type { Account } from "../types/banking";
 import { useNavigate } from "react-router-dom";
-import { fetchAccount } from "../services/bankingApi";
+import { fetchAccount } from "../services/bankingApi.service";
 import AccountCard from "./AccountCard";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorState from "../components/ErrorState";
+import { baseUrl } from "../app/routes";
 
 /*
   Accounts overview page.
@@ -35,7 +36,7 @@ export default function AccountsPage() {
                 ? (
                     <div className="account-grid card">
                         {accounts.map((acc) => (
-                            <AccountCard key={acc.id} account={acc} onSelect={(id) => navigate(`/accounts/${id}`)} />
+                            <AccountCard key={acc.id} account={acc} onSelect={(id) => navigate(`${baseUrl}/accounts/${id}`)} />
                         ))}
                     </div>
                 )

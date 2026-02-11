@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchTransactions } from "../services/bankingApi";
+import { fetchTransactions } from "../services/bankingApi.service";
 import type { Transaction } from "../types/banking";
 import { formatDate } from "../utils/dateFormat";
 import { formatAmount } from "../utils/amountFormat";

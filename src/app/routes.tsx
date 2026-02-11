@@ -7,24 +7,29 @@ import AccountsPage from "../accounts/AccountsPage";
 import TransactionsPage from "../accounts/TransactionsPage";
 import PaymentsPage from "../payments/PaymentsPage";
 import ActivityPage from "../activity/ActivityPage";
+import UserProfilePage from "../userProfile/UserProfilePage";
 
 /*
  App routes. AuthGuard ensures protected access.
 */
+
+export const baseUrl = "/secure";
 export const router = createBrowserRouter([
-    { path: "/login", element: <LoginPage /> },
-    { path: "/",
+    { path: "/", element: <LoginPage /> },
+    { path: `${baseUrl}/`,
         element: (
             <AuthGuard>
                 <AppLayout />
             </AuthGuard>
         ),
         children: [
-            {index: true, element: <DashboardPage />},
+            { index: true, element: <DashboardPage /> },
+            {path: "dashboard", element: <DashboardPage />},
             {path: "accounts", element: <AccountsPage />},
             {path: "accounts/:accountId", element: <TransactionsPage />},
             {path: "payments", element: <PaymentsPage />},
-            {path: "activity-log", element: <ActivityPage />}
+            {path: "activity-log", element: <ActivityPage />},
+            {path: "profile", element: <UserProfilePage />}
         ],
     },
 ]);
